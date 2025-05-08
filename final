@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .question { font-size: 18px; margin-bottom: 10px; }
+    .options { margin-bottom: 20px; }
+    .options input { margin-right: 10px; }
+    .result { font-size: 20px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Quiz</h1>
+  <form id="quizForm">
+    <!-- Question 1 -->
+    <div class="question">
+      <p>1. What is the capital of France?</p>
+      <div class="options">
+        <input type="radio" name="q1" value="A"> A) Berlin<br>
+        <input type="radio" name="q1" value="B"> B) Madrid<br>
+        <input type="radio" name="q1" value="C"> C) Paris<br>
+        <input type="radio" name="q1" value="D"> D) Rome<br>
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+      <p>2. What is the largest ocean on Earth?</p>
+      <div class="options">
+        <input type="radio" name="q2" value="A"> A) Atlantic Ocean<br>
+        <input type="radio" name="q2" value="B"> B) Indian Ocean<br>
+        <input type="radio" name="q2" value="C"> C) Pacific Ocean<br>
+        <input type="radio" name="q2" value="D"> D) Arctic Ocean<br>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <input type="button" value="Submit" onclick="checkAnswers()">
+  </form>
+
+  <!-- Result Display -->
+  <div class="result" id="result"></div>
+
+  <script>
+    function checkAnswers() {
+      var score = 0;
+      var totalQuestions = 2;  // Change this value as you add more questions
+
+      // Correct answers
+      var answers = {
+        q1: "C",  // Correct answer for question 1
+        q2: "C"   // Correct answer for question 2
+      };
+
+      // Checking answers
+      for (var i = 1; i <= totalQuestions; i++) {
+        var selected = document.querySelector('input[name="q' + i + '"]:checked');
+        if (selected && selected.value === answers["q" + i]) {
+          score++;
+        }
+      }
+
+      // Display result
+      var resultText = "You scored " + score + " out of " + totalQuestions;
+      document.getElementById("result").innerHTML = resultText;
+    }
+  </script>
+</body>
+</html>
